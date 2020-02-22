@@ -34,6 +34,7 @@ class Audic {
 				const { length: duration, time: currentTime } = await this._vlc.info()
 				this.duration = duration
 				this._currentTime = currentTime
+				if (duration === 0 && currentTime === 0) this.playing = false
 			}, 1000)
 		})()
 	}
