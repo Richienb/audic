@@ -1,11 +1,12 @@
 {
-	"name": "the-module",
+	"name": "audic",
 	"version": "0.0.0",
-	"description": "My awesome module.",
-	"repository": "https://github.com/Richienb/the-module.git",
+	"description": "Play some audio.",
+	"repository": "https://github.com/Richienb/audic.git",
 	"author": "Richie Bendall <richiebendall@gmail.com>",
 	"license": "MIT",
 	"main": "dist/index.js",
+	"browser": "dist/browser.js",
 	"files": [
 		"src/**/*",
 		"dist/**/*"
@@ -20,9 +21,29 @@
 		"lint": "xo",
 		"test": "yarn lint && ava"
 	},
-	"keywords": [],
-	"dependencies": {},
+	"keywords": [
+		"audio",
+		"vlc",
+		"play",
+		"speaker",
+		"encode",
+		"process",
+		"pause",
+		"resume",
+		"playlist",
+		"api",
+		"interface",
+		"audio",
+		"html",
+		"element"
+	],
+	"dependencies": {
+		"@richienb/vlc": "^1.0.0",
+		"ow": "^0.17.0",
+		"whenever-ready": "^1.1.0"
+	},
 	"devDependencies": {
+		"@sindresorhus/is": "^2.1.0",
 		"ava": "^3.3.0",
 		"eslint-config-richienb": "^0.3.0",
 		"ts-node": "^8.6.2",

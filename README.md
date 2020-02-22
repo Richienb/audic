@@ -1,43 +1,23 @@
-# The module [![Travis CI Build Status](https://img.shields.io/travis/com/Richienb/the-module/master.svg?style=for-the-badge)](https://travis-ci.com/Richienb/the-module)
+# Audic [![Travis CI Build Status](https://img.shields.io/travis/com/Richienb/audic/master.svg?style=for-the-badge)](https://travis-ci.com/Richienb/audic)
 
-My awesome module.
+Play some audio.
 
-[![NPM Badge](https://nodei.co/npm/the-module.png)](https://npmjs.com/package/the-module)
+[![NPM Badge](https://nodei.co/npm/audic.png)](https://npmjs.com/package/audic)
 
 ## Install
 
 ```sh
-npm install the-module
+npm install audic
 ```
 
 ## Usage
 
 ```js
-const theModule = require("the-module");
+const Audic = require("audic");
 
-theModule("unicorns");
-//=> 'unicorns & rainbows'
+new Audic("audio.mp3").play();
 ```
 
 ## API
 
-For more information, see the [documentation](https://richienb.github.io/the-module).
-
-### theModule(input, options?)
-
-#### input
-
-Type: `string`
-
-Lorem ipsum.
-
-#### options
-
-Type: `object`
-
-##### postfix
-
-Type: `string`\
-Default: `rainbows`
-
-Lorem ipsum.
+See the [documentation](https://richienb.github.io/audic).

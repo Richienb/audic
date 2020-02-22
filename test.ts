@@ -1,6 +1,7 @@
-import theModule from "./src"
+import Audic from "./src"
+import is from "@sindresorhus/is"
 import test from "ava"
 
 test("main", (t) => {
-	t.is(theModule("unicorns"), "unicorns & rainbows")
+	t.true(is.class_(Audic))
 })

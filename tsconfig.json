@@ -1,12 +1,13 @@
 {
-    "compilerOptions": {
-        "esModuleInterop": true,
-        "sourceMap": true,
-        "declaration": true,
-        "outDir": "dist/",
-        "target": "es5"
-    },
-    "include": [
-        "src/**/*"
-    ]
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"sourceMap": true,
+		"declaration": true,
+		"outDir": "dist/",
+		"target": "es2018",
+		"module": "commonjs"
+	},
+	"include": [
+		"src/**/*"
+	]
 }
