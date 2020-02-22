@@ -1,0 +1,30 @@
+language: node_js
+
+cache:
+    - npm
+    - yarn
+
+node_js:
+    - "lts/*"
+    - "node"
+
+after_success:
+    - if [ -n "$TRAVIS_TAG" ]; then npm version $TRAVIS_TAG; fi
+    - yarn build
+
+deploy:
+    - provider: npm
+      email: richiebendall@gmail.com
+      api_token: $npm_token
+      edge: true
+      on:
+          tags: true
+
+    - provider: pages
+      token: $github_token
+      committer_from_gh: true
+      keep_history: true
+      local_dir: docs
+      edge: true
+      on:
+          tags: true

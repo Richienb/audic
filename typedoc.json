@@ -1,0 +1,6 @@
+{
+    "out": "./docs",
+    "mode": "file",
+    "target": "ES6",
+    "ignoreCompilerErrors": true
+}
