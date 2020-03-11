@@ -1,6 +1,7 @@
 import vlc from "@richienb/vlc"
 import WheneverReady from "whenever-ready"
 import ow from "ow"
+import { AsyncReturnType } from "type-fest"
 
 class Audic {
 	/** If the audio is playing. */
@@ -17,7 +18,7 @@ class Audic {
 
 	private _currentTime = 0
 
-	private _vlc
+	private _vlc: AsyncReturnType<typeof vlc>
 
 	constructor(src: string) {
 		ow(src, ow.optional.string)

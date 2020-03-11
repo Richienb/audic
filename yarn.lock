@@ -59,18 +59,19 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@richienb/vlc@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@richienb/vlc/-/vlc-1.0.0.tgz#49b880fa22f96f7cb8c00930719c9315e5711749"
-  integrity sha512-76xYDFYqcTzU8SVz5sj2SYxzbr4HLGvzLPvHcNYk1afsFWev/1qq3b+Ggw/HGBcElh7qYCgGPPsusqTw426Icw==
+"@richienb/vlc@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@richienb/vlc/-/vlc-1.0.2.tgz#17e91e75c0dbce4faff2f58d96dbb287da96a68a"
+  integrity sha512-1YJ6bmriaS6GsmtU2vnaCOyrDbdI6Q7TNSFRxrq94LO0YhGKUaasj7PCbnGRhqPZP2UDKenRk2BLrXsx2/h1iw==
   dependencies:
     execa "^4.0.0"
     get-port "^5.1.1"
     got "^10.6.0"
     internal-ip "^5.0.0"
+    query-string "^6.11.1"
     unique-string "^2.0.0"
     url-join "^4.0.1"
-    vlc-static "^1.0.2"
+    vlc-static "^1.0.3"
 
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
@@ -3866,6 +3867,15 @@ query-string@^5.0.1:
     object-assign "^4.1.0"
     strict-uri-encode "^1.0.0"
 
+query-string@^6.11.1:
+  version "6.11.1"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.11.1.tgz#ab021f275d463ce1b61e88f0ce6988b3e8fe7c2c"
+  integrity sha512-1ZvJOUl8ifkkBxu2ByVM/8GijMIPx+cef7u3yroO3Ogm4DOdZcF5dcrWTIlSHe3Pg/mtlt6/eFjObDfJureZZA==
+  dependencies:
+    decode-uri-component "^0.2.0"
+    split-on-first "^1.0.0"
+    strict-uri-encode "^2.0.0"
+
 quick-lru@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-1.1.0.tgz#4360b17c61136ad38078397ff11416e186dcfbb8"
@@ -4380,6 +4390,11 @@ spdx-license-ids@^3.0.0:
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.5.tgz#3694b5804567a458d3c8045842a6358632f62654"
   integrity sha512-J+FWzZoynJEXGphVIS+XEh3kFSjZX/1i9gFBaWQcB+/tmpe2qUsSBABpcxqxnAxFdiUFEgAX1bjYGQvIZmoz9Q==
 
+split-on-first@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/split-on-first/-/split-on-first-1.1.0.tgz#f610afeee3b12bce1d0c30425e76398b78249a5f"
+  integrity sha512-43ZssAJaMusuKWL8sKUBQXHWOpq8d6CfN/u1p4gUzfJkM05C8rxTmYrkIPTXapZpORA6LkkzcUulJ8FqA7Uudw==
+
 split-string@^3.0.1, split-string@^3.0.2:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/split-string/-/split-string-3.1.0.tgz#7cb09dda3a86585705c64b39a6466038682e8fe2"
@@ -4411,6 +4426,11 @@ strict-uri-encode@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-1.1.0.tgz#279b225df1d582b1f54e65addd4352e18faa0713"
   integrity sha1-J5siXfHVgrH1TmWt3UNS4Y+qBxM=
+
+strict-uri-encode@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"
+  integrity sha1-ucczDHBChi9rFC3CdLvMWGbONUY=
 
 string-width@^3.0.0:
   version "3.1.0"
@@ -4725,6 +4745,11 @@ type-fest@^0.11.0:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.11.0.tgz#97abf0872310fed88a5c466b25681576145e33f1"
   integrity sha512-OdjXJxnCN1AvyLSzeKIgXTXxV+99ZuXl3Hpo9XpJAv9MBcHrrJOQ5kV7ypXOuQie+AmWG25hLbiKdwYTifzcfQ==
 
+type-fest@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.12.0.tgz#f57a27ab81c68d136a51fd71467eff94157fa1ee"
+  integrity sha512-53RyidyjvkGpnWPMF9bQgFtWp+Sl8O2Rp13VavmJgfAP9WWG6q6TkrKU8iyJdnwnfgHI6k2hTlgqH4aSdjoTbg==
+
 type-fest@^0.3.0:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.3.1.tgz#63d00d204e059474fe5e1b7c011112bbd1dc29e1"
@@ -4910,10 +4935,10 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-vlc-static@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/vlc-static/-/vlc-static-1.0.2.tgz#ccdc6d722e0bc092fd77d16ea1899386c2580ba5"
-  integrity sha512-/LXiUvSx1VVcuaU0xK8lyOEkbTk4C1dJnNKezH37A3NuPCDgrwCr27f4lMKaIc26XeIuy5bgHXBl8mj3tgsnKg==
+vlc-static@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/vlc-static/-/vlc-static-1.0.3.tgz#7df9414061e4364dbbf3403fd5915cc7064d658d"
+  integrity sha512-mIoaljH4QcNU2gJFAVE/clxXzjUMDtGnjqePDPsGOX4PiA+hb59icGw1CBXEGqRfv2J98wEbr3//WU3yVgs4MQ==
   dependencies:
     boxen "^4.2.0"
     chalk "^3.0.0"
