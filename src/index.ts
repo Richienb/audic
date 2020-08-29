@@ -1,5 +1,4 @@
 import vlc from "@richienb/vlc"
-import WheneverReady from "whenever-ready"
 import ow from "ow"
 import { AsyncReturnType } from "type-fest"
 
@@ -14,23 +13,22 @@ class Audic {
 
 	private _volume = 1
 
-	private _whenReady = new WheneverReady()
-
 	private _currentTime = 0
 
 	private _vlc: AsyncReturnType<typeof vlc>
+
+	private _setup: Promise<void>
 
 	constructor(src: string) {
 		ow(src, ow.optional.string)
 
 		this._src = src
 
-		void (async () => {
+		this._setup = (async () => {
 			this._vlc = await vlc()
 			if (src) await this._vlc.command("in_enqueue", {
 				input: src
 			})
-			this._whenReady.ready = true
 			setInterval(async () => {
 				const { length: duration, time: currentTime } = await this._vlc.info()
 				this.duration = duration
@@ -44,7 +42,7 @@ class Audic {
 	public async play() {
 		if (!this.playing) {
 			this.playing = true
-			await this._whenReady.when()
+			await this._setup
 			await this._vlc.command("pl_pause", {
 				id: 0
 			})
@@ -55,7 +53,7 @@ class Audic {
 	public async pause() {
 		if (this.playing) {
 			this.playing = false
-			await this._whenReady.when()
+			await this._setup
 			await this._vlc.command("pl_pause", {
 				id: 0
 			})
@@ -71,7 +69,7 @@ class Audic {
 	public set volume(value) {
 		ow(value, ow.number.inRange(0, 1))
 		void (async () => {
-			await this._whenReady.when()
+			await this._setup
 			this._volume = value
 			await this._vlc.command("volume", { val: Math.round(value * 256) })
 		})()
@@ -87,7 +85,7 @@ class Audic {
 		ow(value, ow.string)
 
 		void (async () => {
-			await this._whenReady.when()
+			await this._setup
 			await this._vlc.command("pl_empty")
 			await this._vlc.command("in_enqueue", {
 				input: value
@@ -106,7 +104,7 @@ class Audic {
 		ow(value, ow.number.integer.greaterThanOrEqual(0))
 
 		void (async () => {
-			await this._whenReady.when()
+			await this._setup
 			await this._vlc.command("seek", { val: value })
 		})()
 	}

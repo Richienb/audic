@@ -4960,11 +4960,6 @@ well-known-symbols@^2.0.0:
   resolved "https://registry.yarnpkg.com/well-known-symbols/-/well-known-symbols-2.0.0.tgz#e9c7c07dbd132b7b84212c8174391ec1f9871ba5"
   integrity sha512-ZMjC3ho+KXo0BfJb7JgtQ5IBuvnShdlACNkKkdsqBmYw3bPAaJfPeYUo6tLUaT5tG/Gkh7xkpBhKRQ9e7pyg9Q==
 
-whenever-ready@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/whenever-ready/-/whenever-ready-1.1.0.tgz#5792c8ce13ff172d9b0605635e02106e88ed63e6"
-  integrity sha512-Xjl93NhikanJ5XPNdQEXZYbhWXboSloTR5H51H5EP08zgrCTx2k5gcpUuCipGDonrXBsPOIey1baTgSjnzdDrQ==
-
 which-module@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/which-module/-/which-module-2.0.0.tgz#d9ef07dce77b9902b8a3a8fa4b31c3e3f7e6e87a"
