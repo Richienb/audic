@@ -1,3 +1,4 @@
+/// <reference types="node"/>
 import vlc from "@richienb/vlc"
 import ow from "ow"
 import { AsyncReturnType } from "type-fest" // eslint-disable-line import/no-unresolved, node/no-missing-import, @typescript-eslint/no-unused-vars
@@ -19,6 +20,8 @@ class Audic {
 
 	private readonly _setup: Promise<void>
 
+	private _timeUpdater: NodeJS.Timeout
+
 	constructor(src?: string) {
 		ow(src, ow.optional.string)
 
@@ -32,7 +35,7 @@ class Audic {
 				})
 			}
 
-			setInterval(async () => {
+			this._timeUpdater = setInterval(async () => {
 				const { length: duration, time: currentTime } = await this._vlc.info()
 				this.duration = duration
 				this._currentTime = currentTime
@@ -116,6 +119,7 @@ class Audic {
 
 	/** Destroy the player instance. */
 	public destroy() {
+		clearInterval(this._timeUpdater)
 		this._vlc.kill()
 	}
 }
