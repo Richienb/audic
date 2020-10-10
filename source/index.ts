@@ -4,10 +4,14 @@ import ow from "ow"
 import { AsyncReturnType } from "type-fest" // eslint-disable-line import/no-unresolved, node/no-missing-import, @typescript-eslint/no-unused-vars
 
 class Audic {
-	/** If the audio is playing. */
+	/**
+	Whether the audio is currently playing.
+	*/
 	public playing = false
 
-	/** The duration of the audio. */
+	/**
+	The duration of the audio.
+	*/
 	public duration: number
 
 	private readonly _src: string
@@ -46,7 +50,9 @@ class Audic {
 		})()
 	}
 
-	/** Play the audio. */
+	/**
+	Start playing the audio.
+	*/
 	public async play() {
 		if (!this.playing) {
 			this.playing = true
@@ -57,7 +63,9 @@ class Audic {
 		}
 	}
 
-	/** Pause the audio. */
+	/**
+	Pause the audio playback.
+	*/
 	public async pause() {
 		if (this.playing) {
 			this.playing = false
@@ -68,12 +76,16 @@ class Audic {
 		}
 	}
 
-	/** The volume of the audio. */
+	/**
+	The volume of the audio.
+	*/
 	public get volume() {
 		return this._volume
 	}
 
-	/** The volume of the audio. */
+	/**
+	The volume of the audio.
+	*/
 	public set volume(value) {
 		ow(value, ow.number.inRange(0, 1))
 		void (async () => {
@@ -83,12 +95,16 @@ class Audic {
 		})()
 	}
 
-	/** The source uri of the audio. */
+	/**
+	The source uri of the audio.
+	*/
 	public get src() {
 		return this._src
 	}
 
-	/** The source uri of the audio. */
+	/**
+	The source uri of the audio.
+	*/
 	public set src(value) {
 		ow(value, ow.string)
 
@@ -102,12 +118,16 @@ class Audic {
 		})()
 	}
 
-	/** The current playing time of the audio. */
+	/**
+	The current playing time of the audio.
+	*/
 	public get currentTime() {
 		return this._currentTime
 	}
 
-	/** The current playing time of the audio. */
+	/**
+	The current playing time of the audio.
+	*/
 	public set currentTime(value) {
 		ow(value, ow.number.integer.greaterThanOrEqual(0))
 
@@ -117,7 +137,9 @@ class Audic {
 		})()
 	}
 
-	/** Destroy the player instance. */
+	/**
+	Destroy the player instance.
+	*/
 	public destroy() {
 		clearInterval(this._timeUpdater)
 		this._vlc.kill()
