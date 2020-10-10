@@ -13,9 +13,9 @@ npm install audic
 ## Usage
 
 ```js
-const Audic = require("audic");
+const Audic = require("audic")
 
-new Audic("audio.mp3").play();
+new Audic("audio.mp3").play()
 ```
 
 ## API

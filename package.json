@@ -19,10 +19,10 @@
 	},
 	"scripts": {
 		"docs": "typedoc",
-		"build": "tsc && yarn docs",
-		"dev": "yarn tsc --watch",
+		"build": "tsc && typedoc",
+		"dev": "tsc --watch",
 		"lint": "xo",
-		"test": "yarn lint && ava"
+		"test": "xo && ava"
 	},
 	"keywords": [
 		"audio",
