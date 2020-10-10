@@ -1,7 +1,7 @@
-import Audic from "./source"
+import Audic from "./source" // eslint-disable-line node/no-missing-import
 import is from "@sindresorhus/is"
-import test from "ava"
+import test, { ExecutionContext } from "ava" // eslint-disable-line @typescript-eslint/no-unused-vars
 
-test("main", (t) => {
+test("main", (t: ExecutionContext) => {
 	t.true(is.class_(Audic))
 })

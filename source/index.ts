@@ -1,6 +1,6 @@
 import vlc from "@richienb/vlc"
 import ow from "ow"
-import { AsyncReturnType } from "type-fest"
+import { AsyncReturnType } from "type-fest" // eslint-disable-line import/no-unresolved, node/no-missing-import, @typescript-eslint/no-unused-vars
 
 class Audic {
 	/** If the audio is playing. */
@@ -9,7 +9,7 @@ class Audic {
 	/** The duration of the audio. */
 	public duration: number
 
-	private _src: string
+	private readonly _src: string
 
 	private _volume = 1
 
@@ -17,7 +17,7 @@ class Audic {
 
 	private _vlc: AsyncReturnType<typeof vlc>
 
-	private _setup: Promise<void>
+	private readonly _setup: Promise<void>
 
 	constructor(src?: string) {
 		ow(src, ow.optional.string)
@@ -26,14 +26,19 @@ class Audic {
 
 		this._setup = (async () => {
 			this._vlc = await vlc()
-			if (src) await this._vlc.command("in_enqueue", {
-				input: src
-			})
+			if (src) {
+				await this._vlc.command("in_enqueue", {
+					input: src
+				})
+			}
+
 			setInterval(async () => {
 				const { length: duration, time: currentTime } = await this._vlc.info()
 				this.duration = duration
 				this._currentTime = currentTime
-				if (duration === 0 && currentTime === 0) this.playing = false
+				if (duration === 0 && currentTime === 0) {
+					this.playing = false
+				}
 			}, 1000)
 		})()
 	}

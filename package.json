@@ -7,9 +7,12 @@
 	"license": "MIT",
 	"main": "dist/index.js",
 	"browser": "dist/browser.js",
+	"exports": {
+		"browser": "./dist/browser.js",
+		"default": "./dist/index.js"
+	},
 	"files": [
-		"source/**/*",
-		"dist/**/*"
+		"dist"
 	],
 	"engines": {
 		"node": ">=10"
@@ -40,22 +43,19 @@
 	"dependencies": {
 		"@richienb/vlc": "^1.0.2",
 		"ow": "^0.17.0",
-		"type-fest": "^0.12.0"
+		"type-fest": "^0.16.0"
 	},
 	"devDependencies": {
-		"@sindresorhus/is": "^2.1.0",
+		"@sindresorhus/is": "^3.1.2",
 		"ava": "^3.3.0",
-		"eslint-config-richienb": "^0.3.0",
-		"ts-node": "^8.6.2",
-		"typedoc": "^0.16.10",
-		"typescript": "^3.8.2",
-		"xo": "^0.26.1"
-	},
-	"resolutions": {
-		"eslint": "^6.8.0"
+		"eslint-config-richienb": "^0.5.0",
+		"ts-node": "^9.0.0",
+		"typedoc": "^0.19.2",
+		"typescript": "^4.0.3",
+		"xo": "^0.33.1"
 	},
 	"xo": {
-		"extends": "richienb/ts"
+		"extends": "richienb/typescript"
 	},
 	"ava": {
 		"extensions": [

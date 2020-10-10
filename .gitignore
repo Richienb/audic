@@ -1,3 +1,7 @@
+# Lock files
+package-lock.json
+yarn.lock
+
 # Distribution directory
 dist/
 
