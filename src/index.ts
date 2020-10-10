@@ -19,7 +19,7 @@ class Audic {
 
 	private _setup: Promise<void>
 
-	constructor(src: string) {
+	constructor(src?: string) {
 		ow(src, ow.optional.string)
 
 		this._src = src
