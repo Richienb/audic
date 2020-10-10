@@ -1,6 +1,3 @@
 {
-    "out": "./docs",
-    "mode": "file",
-    "target": "ES6",
-    "ignoreCompilerErrors": true
+	"extends": "node_modules/@richienb/typedoc"
 }

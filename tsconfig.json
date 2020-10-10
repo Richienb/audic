@@ -1,13 +1,9 @@
 {
+	"extends": "@richienb/tsconfig",
 	"compilerOptions": {
-		"esModuleInterop": true,
-		"sourceMap": true,
-		"declaration": true,
-		"outDir": "dist/",
-		"target": "es2018",
-		"module": "commonjs"
+		"outDir": "dist/"
 	},
 	"include": [
-		"source/**/*"
+		"source"
 	]
 }

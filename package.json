@@ -15,7 +15,7 @@
 		"dist"
 	],
 	"engines": {
-		"node": ">=10"
+		"node": ">=10.19"
 	},
 	"scripts": {
 		"docs": "typedoc",
@@ -41,11 +41,13 @@
 		"element"
 	],
 	"dependencies": {
-		"@richienb/vlc": "^1.0.2",
+		"@richienb/vlc": "^2.0.0",
 		"ow": "^0.17.0",
 		"type-fest": "^0.16.0"
 	},
 	"devDependencies": {
+		"@richienb/tsconfig": "^0.1.1",
+		"@richienb/typedoc": "^0.1.1",
 		"@sindresorhus/is": "^3.1.2",
 		"ava": "^3.3.0",
 		"eslint-config-richienb": "^0.5.0",
