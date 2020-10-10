@@ -8,6 +8,6 @@
 		"module": "commonjs"
 	},
 	"include": [
-		"src/**/*"
+		"source/**/*"
 	]
 }

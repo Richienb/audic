@@ -8,7 +8,7 @@
 	"main": "dist/index.js",
 	"browser": "dist/browser.js",
 	"files": [
-		"src/**/*",
+		"source/**/*",
 		"dist/**/*"
 	],
 	"engines": {

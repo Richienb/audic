@@ -1,4 +1,4 @@
-import Audic from "./src"
+import Audic from "./source"
 import is from "@sindresorhus/is"
 import test from "ava"
 
