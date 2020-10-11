@@ -14,7 +14,7 @@ class Audic {
 	*/
 	public duration: number
 
-	private readonly _src: string
+	private _src: string
 
 	private _volume = 1
 
@@ -107,6 +107,8 @@ class Audic {
 	*/
 	public set src(value) {
 		ow(value, ow.string)
+
+		this._src = value
 
 		void (async () => {
 			await this._setup
