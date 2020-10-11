@@ -24,7 +24,7 @@ class Audic {
 
 	private readonly _setup: Promise<void>
 
-	private readonly _timeUpdater: NodeJS.Timeout
+	private _timeUpdater: NodeJS.Timeout
 
 	constructor(src?: string) {
 		ow(src, ow.optional.string)
