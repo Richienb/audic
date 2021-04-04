@@ -19,6 +19,8 @@ class Audic {
 	private _volume = 1
 
 	private _currentTime = 0
+	
+	private callbackTriggered = false
 
 	private _vlc: AsyncReturnType<typeof vlc>
 
@@ -26,7 +28,7 @@ class Audic {
 
 	private _timeUpdater: NodeJS.Timeout
 
-	constructor(src?: string) {
+	constructor(src?: string, callback?: any) {
 		ow(src, ow.optional.string)
 
 		this._src = src
@@ -45,6 +47,10 @@ class Audic {
 				this._currentTime = currentTime
 				if (duration === 0 && currentTime === 0) {
 					this.playing = false
+				}
+				if(duration == currentTime && !this.callbackTriggered){
+					this.callbackTriggered = true
+					callback()
 				}
 			}, 1000)
 		})()
@@ -67,6 +73,7 @@ class Audic {
 	Pause the audio playback.
 	*/
 	public async pause() {
+		this.callbackTriggered = false
 		if (this.playing) {
 			this.playing = false
 			await this._setup
