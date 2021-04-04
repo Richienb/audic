@@ -20,7 +20,9 @@ class Audic {
 
 	private _currentTime = 0
 	
-	private callbackTriggered = false
+	private _callbackTriggered = false
+	
+	public onComplete = () => {}
 
 	private _vlc: AsyncReturnType<typeof vlc>
 
@@ -28,7 +30,7 @@ class Audic {
 
 	private _timeUpdater: NodeJS.Timeout
 
-	constructor(src?: string, callback?: any) {
+	constructor(src?: string) {
 		ow(src, ow.optional.string)
 
 		this._src = src
@@ -45,12 +47,12 @@ class Audic {
 				const { length: duration, time: currentTime } = await this._vlc.info()
 				this.duration = duration
 				this._currentTime = currentTime
+				if(this.playing && duration == currentTime && !this._callbackTriggered){
+					this._callbackTriggered = true
+					this.onComplete()
+				}
 				if (duration === 0 && currentTime === 0) {
 					this.playing = false
-				}
-				if(duration == currentTime && !this.callbackTriggered){
-					this.callbackTriggered = true
-					callback()
 				}
 			}, 1000)
 		})()
@@ -60,6 +62,7 @@ class Audic {
 	Start playing the audio.
 	*/
 	public async play() {
+		this._callbackTriggered = false
 		if (!this.playing) {
 			this.playing = true
 			await this._setup
@@ -73,7 +76,6 @@ class Audic {
 	Pause the audio playback.
 	*/
 	public async pause() {
-		this.callbackTriggered = false
 		if (this.playing) {
 			this.playing = false
 			await this._setup
@@ -112,19 +114,14 @@ class Audic {
 	/**
 	The source uri of the audio.
 	*/
-	public set src(value) {
-		ow(value, ow.string)
-
+	public async setSrc(value: string) {
 		this._src = value
-
-		void (async () => {
-			await this._setup
-			await this._vlc.command("pl_empty")
-			await this._vlc.command("in_enqueue", {
-				input: value
-			})
-			this.playing = false
-		})()
+		await this._setup
+		await this._vlc.command("pl_empty")
+		await this._vlc.command("in_enqueue", {
+			input: value
+		})
+		this.playing = false
 	}
 
 	/**
