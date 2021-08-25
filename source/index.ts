@@ -121,6 +121,19 @@ class Audic {
 	}
 
 	/**
+	Async way for setting the source uri of the audio.
+	 */
+	public async setSrc(value: string) {
+		this._src = value
+		await this._setup
+		await this._vlc.command("pl_empty")
+		await this._vlc.command("in_enqueue", {
+			input: value
+		})
+		this.playing = false
+	}
+
+	/**
 	The current playing time of the audio.
 	*/
 	public get currentTime() {
