@@ -18,7 +18,6 @@ class Audic extends EventEmitter {
 	/*
 	Event state
 	*/
-	// Otherwise would trigger on construct()
 	private _endedEventTriggered: boolean
 
 	private _src: string
