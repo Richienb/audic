@@ -2,8 +2,9 @@
 import vlc from "@richienb/vlc"
 import ow from "ow"
 import { AsyncReturnType } from "type-fest" // eslint-disable-line import/no-unresolved, node/no-missing-import, @typescript-eslint/no-unused-vars
+import { EventEmitter } from 'events'
 
-class Audic {
+class Audic extends EventEmitter {
 	/**
 	Whether the audio is currently playing.
 	*/
@@ -13,6 +14,12 @@ class Audic {
 	The duration of the audio.
 	*/
 	public duration: number
+
+	/*
+	Event state
+	*/
+	// Otherwise would trigger on construct()
+	private _endedEventTriggered: boolean
 
 	private _src: string
 
@@ -27,9 +34,13 @@ class Audic {
 	private _timeUpdater: NodeJS.Timeout
 
 	constructor(src?: string) {
+		super()
+
 		ow(src, ow.optional.string)
 
 		this._src = src
+
+		this._endedEventTriggered = (src) ? false : true
 
 		this._setup = (async () => {
 			this._vlc = await vlc()
@@ -45,6 +56,12 @@ class Audic {
 				this._currentTime = currentTime
 				if (duration === 0 && currentTime === 0) {
 					this.playing = false
+				}
+
+				if (this._endedEventTriggered === false && duration === currentTime) {
+					this.emit('ended')
+
+					this._endedEventTriggered = true
 				}
 			}, 1000)
 		})()
@@ -74,6 +91,31 @@ class Audic {
 				id: 0
 			})
 		}
+	}
+
+	/**
+	Set the source of the audio and await vlc
+	*/
+	public async setSrc(value) {
+		ow(value, ow.string)
+
+		await this.setVlcInput(value)
+
+		this._src = value
+
+		this._endedEventTriggered = false
+	}
+
+	/**
+	Set the audio source of vlc
+	*/
+	private async setVlcInput(value) {
+		await this._setup
+		await this._vlc.command("pl_empty")
+		await this._vlc.command("in_enqueue", {
+			input: value
+		})
+		this.playing = false
 	}
 
 	/**
@@ -110,14 +152,7 @@ class Audic {
 
 		this._src = value
 
-		void (async () => {
-			await this._setup
-			await this._vlc.command("pl_empty")
-			await this._vlc.command("in_enqueue", {
-				input: value
-			})
-			this.playing = false
-		})()
+		this.setVlcInput(value)
 	}
 
 	/**
