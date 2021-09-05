@@ -148,11 +148,7 @@ class Audic extends EventEmitter {
 	The source uri of the audio.
 	*/
 	public set src(value) {
-		ow(value, ow.string)
-
-		this._src = value
-
-		this.setVlcInput(value)
+		this.setSrc(value)
 	}
 
 	/**
