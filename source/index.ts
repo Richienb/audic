@@ -103,6 +103,8 @@ class Audic extends EventEmitter {
 		this._src = value
 
 		this._endedEventTriggered = false
+
+		this.emit('canplaythrough')
 	}
 
 	/**
