@@ -1,28 +1,27 @@
 {
 	"name": "audic",
-	"version": "0.0.0",
+	"version": "2.0.0",
 	"description": "Play some audio.",
-	"repository": "https://github.com/Richienb/audic.git",
-	"author": "Richie Bendall <richiebendall@gmail.com>",
-	"license": "MIT",
-	"main": "dist/index.js",
-	"browser": "dist/browser.js",
-	"exports": {
-		"browser": "./dist/browser.js",
-		"default": "./dist/index.js"
+	"repository": "Richienb/audic",
+	"author": {
+		"name": "Richie Bendall",
+		"email": "richiebendall@gmail.com"
 	},
+	"license": "MIT",
+	"type": "module",
+	"exports": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"files": [
 		"dist"
 	],
 	"engines": {
-		"node": ">=10.19"
+		"node": ">=12.20"
 	},
 	"scripts": {
-		"docs": "typedoc",
-		"build": "tsc && typedoc",
-		"dev": "tsc --watch",
-		"lint": "xo",
-		"test": "xo && ava"
+		"build": "tsc",
+		"test": "xo && ava",
+		"prepack": "tsc",
+		"example": "node --loader ts-node/esm/transpile-only example.ts"
 	},
 	"keywords": [
 		"audio",
@@ -41,30 +40,28 @@
 		"element"
 	],
 	"dependencies": {
-		"@richienb/vlc": "^2.0.0",
-		"ow": "^0.17.0",
-		"type-fest": "^0.16.0"
+		"@richienb/vlc": "^3.0.2",
+		"event-target-shim": "^6.0.2",
+		"interval-promise": "^1.4.0",
+		"p-event": "^4.2.0"
 	},
 	"devDependencies": {
-		"@richienb/tsconfig": "^0.1.1",
-		"@richienb/typedoc": "^0.1.1",
-		"@sindresorhus/is": "^3.1.2",
-		"ava": "^3.3.0",
-		"eslint-config-richienb": "^0.5.0",
-		"ts-node": "^9.0.0",
-		"typedoc": "^0.19.2",
-		"typescript": "^4.0.3",
-		"xo": "^0.33.1"
-	},
-	"xo": {
-		"extends": "richienb/typescript"
+		"@sindresorhus/is": "^4.0.0",
+		"@sindresorhus/tsconfig": "^2.0.0",
+		"ava": "^3.15.0",
+		"ts-node": "^10.2.1",
+		"typescript": "^4.4.3",
+		"xo": "^0.44.0"
 	},
 	"ava": {
-		"extensions": [
-			"ts"
-		],
-		"require": [
-			"ts-node/register"
+		"extensions": {
+			"ts": "module"
+		},
+		"nonSemVerExperiments": {
+			"configurableModuleFormat": true
+		},
+		"nodeArguments": [
+			"--loader=ts-node/esm"
 		]
 	}
 }
