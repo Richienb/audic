@@ -8,13 +8,6 @@ Play some audio.
 
 @example
 ```js
-import {playAudioFile} from 'audic';
-
-await playAudioFile('audio.mp3');
-```
-
-@example
-```js
 import Audic from 'audic';
 
 const audic = new Audic('audio.mp3');
@@ -72,12 +65,22 @@ export default class Audic extends EventTarget<{
 			const vlc = await createVlc();
 			void pInterval(this._onUpdate.bind(this), 1000);
 
-			await vlc.command('pl_repeat');
-			if (src) {
-				await vlc.command('in_enqueue', {
-					input: src,
-				});
-			}
+			await Promise.all([
+				(async () => {
+					const {repeat} = await vlc.info();
+
+					if (repeat) {
+						await vlc.command('pl_repeat');
+					}
+				})(),
+				(async () => {
+					if (src) {
+						await vlc.command('in_enqueue', {
+							input: src,
+						});
+					}
+				})(),
+			]);
 
 			return vlc;
 		})();
@@ -203,13 +206,17 @@ export default class Audic extends EventTarget<{
 			throw new TypeError(`Expected a boolean, got ${typeof value}`);
 		}
 
-		if (this._loop !== value) {
-			this._loop = value;
-			void (async () => {
-				const vlc = await this._vlc;
+		this._loop = value;
+
+		void (async () => {
+			const vlc = await this._vlc;
+
+			const {repeat} = await vlc.info();
+
+			if (value !== repeat) {
 				await vlc.command('pl_repeat');
-			})();
-		}
+			}
+		})();
 	}
 
 	/**
@@ -273,6 +280,18 @@ export default class Audic extends EventTarget<{
 	}
 }
 
+/**
+Convenience function that plays an audio file.
+
+@returns A promise that resolves when playback has completed.
+
+@example
+```js
+import {playAudioFile} from 'audic';
+
+await playAudioFile('audio.mp3');
+```
+*/
 export async function playAudioFile(src: string) {
 	const audic = new Audic(src);
 	void audic.play();
