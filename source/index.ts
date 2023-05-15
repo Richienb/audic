@@ -47,6 +47,7 @@ export default class Audic extends EventTarget<{
 	private readonly _vlc: ReturnType<typeof createVlc>;
 
 	private _loop = false;
+	private _repeat = false;
 
 	private _isEnded = false;
 
@@ -207,6 +208,30 @@ export default class Audic extends EventTarget<{
 		}
 
 		this._loop = value;
+
+		void (async () => {
+			const vlc = await this._vlc;
+
+			const {loop} = await vlc.info();
+
+			if (value !== loop) {
+				await vlc.command('pl_loop');
+			}
+		})();
+	}
+		
+	/**
+	Whether audio playback is repeating.
+	*/
+	get repeat() {
+		return this.repeat;
+	}
+	set repeat(value) {
+		if (typeof value !== 'boolean') {
+			throw new TypeError(`Expected a boolean, got ${typeof value}`);
+		}
+
+		this._repeat = value;
 
 		void (async () => {
 			const vlc = await this._vlc;
