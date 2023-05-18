@@ -216,7 +216,7 @@ export default class Audic extends EventTarget<{
 
 			const {repeat, loop} = await vlc.info();
 
-			if (repeat) {
+			if (value !== repeat) {
 				await vlc.command('pl_repeat');
 			}
 			if (value !== loop) {
