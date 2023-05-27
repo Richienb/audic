@@ -72,6 +72,7 @@ export default class Audic extends EventTarget<{
 					if (repeat) {
 						await vlc.command('pl_repeat');
 					}
+
 					if (loop) {
 						await vlc.command('pl_loop');
 					}
@@ -219,6 +220,7 @@ export default class Audic extends EventTarget<{
 			if (value !== repeat) {
 				await vlc.command('pl_repeat');
 			}
+
 			if (value !== loop) {
 				await vlc.command('pl_loop');
 			}
